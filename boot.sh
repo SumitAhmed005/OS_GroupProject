@@ -1,29 +1,33 @@
-#!/bin/bash
+this is how i want the boot.sh #!/bin/bash
 
-echo "Starting OS Project..."
+echo "Cleaning old build and logs..."
+rm -rf bin logs
 
-rm -rf bin
-mkdir bin
+echo "Creating required folders..."
+mkdir bin logs
+touch logs/logs.txt
 
-if [ ! -d logs ]; then
-    mkdir logs
-fi
-
-if [ ! -f logs/logs.txt ]; then
-    touch logs/logs.txt
-fi
-
-echo "Compiling modules..."
-
+echo "Compiling logger..."
 gcc src/logger.c -o bin/logger
-gcc src/peterson.c -o bin/peterson
+
+echo "Compiling file management..."
 gcc src/file_management.c -o bin/file_management
-gcc src/memory.c -o bin/memory
+
+echo "Compiling peterson..."
+gcc src/peterson.c -o bin/peterson
+
+echo "Compiling amdahl..."
 gcc src/amdahl.c -o bin/amdahl
+
+echo "Compiling memory..."
+gcc src/memory.c -o bin/memory
+
+echo "Compiling main menu..."
 gcc src/main_menu.c -o bin/main_menu
 
-echo "Compilation complete."
-echo "Running main menu..."
+echo "Making executables runnable..."
+chmod +x bin/*
 
-cd bin
+echo "Running main menu..."
+cd bin || exit
 ./main_menu
