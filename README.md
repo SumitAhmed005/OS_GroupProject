@@ -1,83 +1,82 @@
 # Modular Operating System Project
+Overview
+This project implements multiple Operating System concepts as separate modules integrated through a main menu. Each module demonstrates key OS concepts such as file management, synchronization, logging, and memory allocation.
 
-This project is a Modular Operating System simulation developed in C using Unix system calls. 
-The system is divided into multiple independent modules such as logging, memory management, file management, synchronization using Peterson’s algorithm, and performance calculation using Amdahl’s Law. 
-All modules are controlled by a main menu program which uses fork(), exec(), and wait() system calls to execute different parts of the system.
+Modules
 
----
+Logger
+Handles logging of system events and writes logs into logs/logs.txt. Records actions such as file operations and process execution.
+File Management
+Supports basic file operations including creating files, reading files, listing files, and deleting files.
+Peterson Solution
+Demonstrates mutual exclusion using Peterson’s algorithm. Simulates two processes entering and exiting the critical section.
+Amdahl’s Law
+Calculates system speedup using Amdahl’s Law based on parallel fraction and number of processors.
+Memory Allocation
+Implements First Fit memory allocation and supports compaction. Allows allocation of processes into memory blocks.
 
-## Project Structure
+Project Structure
 
-The project follows a modular folder structure where source files, executables, and logs are stored in separate directories.
+os_project/
+src/
+logger.c
+file_management.c
+peterson.c
+amdahl.c
+memory.c
+main_menu.c
 
-OS_GroupProject  
-│  
-├── src/        → All .c source files  
-├── bin/        → Compiled executables  
-├── logs/       → logs.txt  
-├── report/     → Contribution report  
-├── boot.sh  
-├── README.md  
-└── .gitignore  
+bin/
+logger
+file_management
+peterson
+amdahl
+memory
+main_menu
 
----
+logs/
+logs.txt
 
-## System Flow
+boot.sh
+README.md
 
-The system runs using a boot script which compiles all modules and then launches the main menu. 
-The main menu then creates child processes and executes the selected module.
+How to Run
 
-boot.sh  
-   ↓  
-Compile all modules  
-   ↓  
-main_menu  
-   ↓  
-fork()  
-   ↓  
-exec(module)  
-   ↓  
-Module runs  
-   ↓  
-logger → logs/logs.txt  
+Navigate to the project directory
+cd os_project
+Make the boot script executable
+chmod +x boot.sh
+Run the project
+./boot.sh
+Use the menu to select modules
+1 → Logger
+2 → File Management
+3 → Peterson Solution
+4 → Amdahl’s Law
+5 → Memory Allocation
+6 → Exit
 
----
+Features
+Modular design with separate files for each concept.
+Centralized menu system.
+Logging system to track operations.
+Automated compilation using boot script.
+Clean and organized directory structure.
 
-## Modules Description
+Requirements
+GCC compiler
+Linux or WSL environment
+Bash shell
 
-The project contains multiple modules that simulate different operating system concepts.
+Notes
+All modules are compiled using GCC.
+Logs are stored in logs/logs.txt.
+Boot script automatically cleans old builds, compiles modules, and runs the main menu.
+All modules are fully integrated and functional.
 
-logger.c → Handles system logging and writes activity to logs.txt  
-peterson.c → Demonstrates process synchronization using Peterson’s Algorithm  
-file_management.c → Performs file operations such as creating, reading, and writing files  
-memory.c → Simulates memory management operations  
-amdahl.c → Calculates performance improvement using Amdahl’s Law  
-main_menu.c → Main controller program that launches modules using fork() and exec()  
-
----
-
-## How To Run The Project
-
-Open the terminal in the project folder and run the following commands:
-
-chmod +x boot.sh  
-./boot.sh  
-
-The boot script will compile all source files, create executables in the bin folder, and start the main menu program.
-
----
-
-## Group Members
-
-Navneet Kaur  
-Sumit Ahmed 
-Navreet Kaur  
-Gowil Madaan  
-Abdunasr Ebrahim  
-
----
-
-## Summary
-
-This project demonstrates modular system design, process creation, execution control, synchronization, file handling, logging, and performance analysis in a Unix environment. 
-The project structure separates source code, executables, and logs to simulate a real operating system environment.
+Authors
+Sumit Ahmed
+Navreet Pannu
+Navneet Kaur
+Gowil Madaan
+Abdunasr Ebrahim
